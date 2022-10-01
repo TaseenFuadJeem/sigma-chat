@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import pattern from '../../Assets/login-pattern.png';
 import logo from '../../Assets/logo.png';
 
-const Login = () => {
+const ResetPass = () => {
 
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
@@ -37,7 +37,7 @@ const Login = () => {
                         <h1
                             class="my-3 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
                         >
-                            Welcome Back to Sigma
+                            Reset Your Sigma Password
                         </h1>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -48,7 +48,7 @@ const Login = () => {
                                     <label className="label">
                                         <span className="label-text text-gray-500">Email</span>
                                     </label>
-                                    <input type="email" placeholder="Enter your email" className="input input-bordered text-black" {...register("email", {
+                                    <input type="email" placeholder="Enter your existing email" className="input input-bordered text-black" {...register("email", {
                                         required: {
                                             value: true,
                                             message: "Email is required"
@@ -63,40 +63,17 @@ const Login = () => {
                                         {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
                                     </label>
                                 </div>
-
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text text-gray-500">Password</span>
-                                    </label>
-                                    <input type="password" placeholder="Enter your password" className="input input-bordered text-black" {...register("password", {
-                                        required: {
-                                            value: true,
-                                            message: "Password is required"
-                                        },
-                                        minLength: {
-                                            value: 6,
-                                            message: "Minimum 6 characters required"
-                                        }
-                                    })} />
-                                    <label className="label">
-                                        {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
-                                        {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
-                                    </label>
-                                </div>
                             </div>
 
                             <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                                <input type="submit" value="Log in" className='btn btn-outline btn-primary hover:text-white' />
+                                <input type="submit" value="Reset Password" className='btn btn-outline btn-primary hover:text-white' />
 
                                 <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                                    Don't have an account?
-                                    <Link to="/create-a-new-account" class="btn btn-link p-0 text-gray-500 capitalize mx-1">Create Account</Link>.
+                                    Changed your ming? Then
+                                    <Link to="/login" class="btn btn-link p-0 text-gray-500 capitalize mx-1">Log In</Link>.
                                 </p>
                             </div>
                         </form>
-
-                        <Link to="/reset-your-password" className='mb-3 btn btn-link p-0 text-gray-500 capitalize'>Forgot your password?</Link>
-
                     </div>
                 </main>
             </div>
@@ -104,4 +81,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default ResetPass;
