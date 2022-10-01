@@ -1,7 +1,15 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import pattern from '../../Assets/login-pattern.png';
 
 const Registration = () => {
+
+    const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
+    const onSubmit = async data => {
+        console.log(data);
+    };
+
     return (
         <section>
 
@@ -18,7 +26,7 @@ const Registration = () => {
                     </aside>
 
                     <main
-                        class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
+                        class="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 xl:col-span-6"
                     >
                         <div class="max-w-xl lg:max-w-3xl">
                             <a class="block text-blue-600" href="/">
@@ -42,77 +50,101 @@ const Registration = () => {
                                 Welcome to Sigma
                             </h1>
 
-                            <p class="mt-4 leading-relaxed text-gray-500">
-                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
-                                dolorum aliquam, quibusdam aperiam voluptatum.
-                            </p>
+                            <form onSubmit={handleSubmit(onSubmit)}>
 
-                            <form action="#" class="grid grid-cols-6 gap-6 mt-8">
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="Password"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Your Name
-                                    </label>
+                                <div className='grid lg:grid-cols-2 lg:gap-2'>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text text-gray-500">Name</span>
+                                        </label>
+                                        <input type="text" placeholder="your name" className="input input-bordered text-black" {...register("name", {
+                                            required: {
+                                                value: true,
+                                                message: "Name is required"
+                                            }
+                                        })} />
+                                        <label className="label">
+                                            {errors.name?.type === 'required' && <span className="label-text-alt text-red-500">{errors.name.message}</span>}
+                                        </label>
+                                    </div>
 
-                                    <input
-                                        type="password"
-                                        id="Password"
-                                        name="password"
-                                        class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
-                                    />
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text text-gray-500">Email</span>
+                                        </label>
+                                        <input type="email" placeholder="email" className="input input-bordered text-black" {...register("email", {
+                                            required: {
+                                                value: true,
+                                                message: "Email is required"
+                                            },
+                                            pattern: {
+                                                value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                                                message: "Provide a valid email"
+                                            }
+                                        })} />
+                                        <label className="label">
+                                            {errors.email?.type === 'required' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                                            {errors.email?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.email.message}</span>}
+                                        </label>
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text text-gray-500">Password</span>
+                                        </label>
+                                        <input type="password" placeholder="password" className="input input-bordered text-black" {...register("password", {
+                                            required: {
+                                                value: true,
+                                                message: "Password is required"
+                                            },
+                                            minLength: {
+                                                value: 6,
+                                                message: "Minimum 6 characters required"
+                                            }
+                                        })} />
+                                        <label className="label">
+                                            {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                            {errors.password?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
+                                        </label>
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text text-gray-500">Confirm Password</span>
+                                        </label>
+                                        <input type="password" placeholder="Please re-write your password" className="input input-bordered text-black" {...register("confirmpassword", {
+                                            required: {
+                                                value: true,
+                                                message: "Password confirmation is required"
+                                            },
+                                            minLength: {
+                                                value: 6,
+                                                message: "Minimum 6 characters required"
+                                            }
+                                        })} />
+                                        <label className="label">
+                                            {errors.confirmpassword?.type === 'required' && <span className="label-text-alt text-red-500">{errors.confirmpassword.message}</span>}
+                                            {errors.confirmpassword?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.confirmpassword.message}</span>}
+                                        </label>
+                                    </div>
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="PasswordConfirmation"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Email
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text text-gray-500">Profile Photo</span>
                                     </label>
-
-                                    <input
-                                        type="password"
-                                        id="PasswordConfirmation"
-                                        name="password_confirmation"
-                                        class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
-                                    />
+                                    <input type="file" {...register("img", {
+                                        required: {
+                                            value: true,
+                                            message: "Image is required"
+                                        }
+                                    })} />
+                                    <label className="label">
+                                        {errors.img?.type === 'required' && <span className="label-text-alt text-red-500">{errors.img.message}</span>}
+                                    </label>
                                 </div>
 
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="Password"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Password
-                                    </label>
-
-                                    <input
-                                        type="password"
-                                        id="Password"
-                                        name="password"
-                                        class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
-                                    />
-                                </div>
-
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label
-                                        for="PasswordConfirmation"
-                                        class="block text-sm font-medium text-gray-700"
-                                    >
-                                        Conform Password
-                                    </label>
-
-                                    <input
-                                        type="password"
-                                        id="PasswordConfirmation"
-                                        name="password_confirmation"
-                                        class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
-                                    />
-                                </div>
-
-                                <div class="col-span-6">
+                                <div class=" my-3">
                                     <label for="MarketingAccept" class="flex gap-4">
                                         <input
                                             type="checkbox"
@@ -128,7 +160,7 @@ const Registration = () => {
                                     </label>
                                 </div>
 
-                                <div class="col-span-6">
+                                <div class="mb-3">
                                     <p class="text-sm text-gray-500">
                                         By creating an account, you agree to our
                                         <a href="#" class="text-gray-700 underline mx-1">
@@ -140,11 +172,7 @@ const Registration = () => {
                                 </div>
 
                                 <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
-                                    <button
-                                        class="inline-block px-12 py-3 text-sm font-medium text-white transition bg-blue-600 border border-blue-600 rounded-md shrink-0 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
-                                    >
-                                        Create an account
-                                    </button>
+                                    <input type="submit" value="Create new Account" className='btn btn-outline btn-primary hover:text-white' />
 
                                     <p class="mt-4 text-sm text-gray-500 sm:mt-0">
                                         Already have an account?
