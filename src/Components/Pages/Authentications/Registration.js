@@ -48,22 +48,39 @@ const Registration = () => {
                             </p>
 
                             <form action="#" class="grid grid-cols-6 gap-6 mt-8">
-
-
-                                <div class="col-span-6">
-                                    <label for="Email" class="block text-sm font-medium text-gray-700">
-                                        Email
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label
+                                        for="Password"
+                                        class="block text-sm font-medium text-gray-700"
+                                    >
+                                        Your Name
                                     </label>
 
                                     <input
-                                        type="email"
-                                        id="Email"
-                                        name="email"
+                                        type="password"
+                                        id="Password"
+                                        name="password"
                                         class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
                                     />
                                 </div>
 
-                                <div class="">
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label
+                                        for="PasswordConfirmation"
+                                        class="block text-sm font-medium text-gray-700"
+                                    >
+                                        Email
+                                    </label>
+
+                                    <input
+                                        type="password"
+                                        id="PasswordConfirmation"
+                                        name="password_confirmation"
+                                        class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
+                                    />
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
                                     <label
                                         for="Password"
                                         class="block text-sm font-medium text-gray-700"
@@ -79,19 +96,59 @@ const Registration = () => {
                                     />
                                 </div>
 
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label
+                                        for="PasswordConfirmation"
+                                        class="block text-sm font-medium text-gray-700"
+                                    >
+                                        Conform Password
+                                    </label>
 
+                                    <input
+                                        type="password"
+                                        id="PasswordConfirmation"
+                                        name="password_confirmation"
+                                        class="w-full mt-1 text-sm text-gray-700 bg-white border-gray-200 rounded-md shadow-sm"
+                                    />
+                                </div>
 
+                                <div class="col-span-6">
+                                    <label for="MarketingAccept" class="flex gap-4">
+                                        <input
+                                            type="checkbox"
+                                            id="MarketingAccept"
+                                            name="marketing_accept"
+                                            class="w-5 h-5 bg-white border-gray-200 rounded-md shadow-sm"
+                                        />
+
+                                        <span class="text-sm text-gray-700">
+                                            I want to receive emails about events, product updates and
+                                            company announcements.
+                                        </span>
+                                    </label>
+                                </div>
+
+                                <div class="col-span-6">
+                                    <p class="text-sm text-gray-500">
+                                        By creating an account, you agree to our
+                                        <a href="#" class="text-gray-700 underline mx-1">
+                                            terms and conditions
+                                        </a>
+                                        and
+                                        <a href="#" class="text-gray-700 underline mx-1">privacy policy</a>.
+                                    </p>
+                                </div>
 
                                 <div class="col-span-6 sm:flex sm:items-center sm:gap-4">
                                     <button
                                         class="inline-block px-12 py-3 text-sm font-medium text-white transition bg-blue-600 border border-blue-600 rounded-md shrink-0 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                                     >
-                                        Log In
+                                        Create an account
                                     </button>
 
                                     <p class="mt-4 text-sm text-gray-500 sm:mt-0">
-                                        Do not have an account?
-                                        <a href="#" class="text-gray-700 underline">Create Account</a>.
+                                        Already have an account?
+                                        <a href="#" class="text-gray-700 underline mx-1">Log in</a>.
                                     </p>
                                 </div>
                             </form>
