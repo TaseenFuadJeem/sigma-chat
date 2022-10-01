@@ -37,7 +37,7 @@ const ResetPass = () => {
                         <h1
                             class="my-3 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
                         >
-                            Reset Your Sigma Password
+                            Reset Your Sigmaa Password
                         </h1>
 
                         <form onSubmit={handleSubmit(onSubmit)}>

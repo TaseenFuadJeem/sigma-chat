@@ -37,7 +37,7 @@ const Login = () => {
                         <h1
                             class="my-3 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
                         >
-                            Welcome Back to Sigma
+                            Welcome Back to Sigmaa
                         </h1>
 
                         <form onSubmit={handleSubmit(onSubmit)}>
