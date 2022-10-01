@@ -3,6 +3,7 @@ import './App.css';
 import Login from './Components/Pages/Authentications/Login';
 import Registration from './Components/Pages/Authentications/Registration';
 import ResetPass from './Components/Pages/Authentications/ResetPass';
+import Chat from './Components/Pages/Chat-Interface/Chat';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/create-a-new-account' element={<Registration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/reset-your-password' element={<ResetPass />} />
+        <Route path='/conversations' element={<Chat />} />
       </Routes>
 
     </div>

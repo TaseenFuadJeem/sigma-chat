@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import pattern from '../../Assets/login-pattern.png';
-import logo from '../../Assets/logo.png';
+import logo from '../../Assets/logo-black.png';
 
 const Login = () => {
 
