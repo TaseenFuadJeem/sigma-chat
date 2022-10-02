@@ -11,9 +11,7 @@ import Loading from '../Other-Components/Loading';
 
 const Registration = () => {
 
-    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth,
-        { sendEmailVerification: true }
-    );
+    const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
 
     const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
 
