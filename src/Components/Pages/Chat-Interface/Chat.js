@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import bg from '../../Assets/blob-scene-haikei.svg';
+import { Link } from 'react-router-dom';
 
 const Chat = () => {
     return (
@@ -21,8 +22,8 @@ const Chat = () => {
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                     <ul className="menu p-4 overflow-y-auto w-80 lg:text-white text-black bg-white lg:bg-transparent lg:backdrop-blur-3xl">
                         {/* Sidebar content */}
-                        <li><a>Sidebar Item 1</a></li>
-                        <li><a>Sidebar Item 2</a></li>
+                        <li><Link to="">Sidebar Item 1</Link></li>
+                        <li><Link to="">Sidebar Item 2</Link></li>
                         {/* Sidebar content */}
                     </ul>
 

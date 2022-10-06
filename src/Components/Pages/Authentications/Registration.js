@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import pattern from '../../Assets/login-pattern.png';
 import logo from '../../Assets/logo-black.png';
@@ -19,6 +19,7 @@ const Registration = () => {
 
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
+    const navigate = useNavigate();
 
     useEffect(() => {
 
@@ -32,9 +33,10 @@ const Registration = () => {
             })
             console.log(googleUser)
             console.log(user)
+            navigate('/conversations')
         }
 
-    }, [user, googleUser])
+    }, [user, googleUser, navigate])
 
     useEffect(() => {
 
