@@ -5,13 +5,14 @@ import Login from './Components/Pages/Authentications/Login';
 import Registration from './Components/Pages/Authentications/Registration';
 import ResetPass from './Components/Pages/Authentications/ResetPass';
 import Chat from './Components/Pages/Chat-Interface/Chat';
+import RequireAuth from './Components/Pages/Other-Components/RequireAuth';
 
 function App() {
   return (
     <div>
 
       <Routes>
-        <Route path='/' element={<Registration />} />
+        <Route path='/' element={<RequireAuth><Chat /></RequireAuth>} />
         <Route path='/create-a-new-account' element={<Registration />} />
         <Route path='/login' element={<Login />} />
         <Route path='/reset-your-password' element={<ResetPass />} />
