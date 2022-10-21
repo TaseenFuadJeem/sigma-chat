@@ -1,25 +1,37 @@
 import { signOut } from 'firebase/auth';
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import auth from '../../../firebase.init';
 import logo from '../../Assets/logo-white.png';
+import { BiLogOut, BiDownArrow } from 'react-icons/bi';
+import { IoMdSettings } from 'react-icons/io';
 
 const Navbar = () => {
 
+    const [user] = useAuthState(auth);
+    console.log(user?.photoURL)
+
     const navigate = useNavigate();
 
-    const logout = () => {
-        signOut(auth);
+    const handleLogout = () => {
+
         Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Logout Successful',
-            showConfirmButton: false,
-            timer: 2000
+            title: `${user.displayName}, are you sure for logout?`,
+            showCancelButton: true,
+            icon: 'warning',
+            confirmButtonText: 'Logout',
+            denyButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                signOut(auth);
+                Swal.fire("Logout Successful", " ", "success");
+                navigate("/login");
+            };
         })
-        navigate('/login')
-    };
+
+    }
 
     return (
         <nav className="navbar bg-transparent backdrop-blur-3xl shadow-md text-white fixed top-0 z-50">
@@ -46,7 +58,27 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <button onClick={() => logout()} className="btn">Get started</button>
+
+
+
+                <div className="dropdown dropdown-end">
+                    <label tabIndex={0} className="btn btn-ghost m-1">
+                        <div className='flex items-center'>
+                            <div className="avatar online">
+                                <div className="w-9 rounded-full">
+                                    <img src={user?.photoURL} alt="dp" />
+                                </div>
+                            </div>
+                            <p className='ml-2 normal-case text-white font-semibold'>{user?.displayName}</p>
+                            <BiDownArrow className='text-lg ml-1' />
+                        </div>
+                    </label>
+                    <ul tabIndex={0} className="dropdown-content p-2 menu shadow bg-base-100 rounded-box w-52">
+                        <button onClick={() => handleLogout()} className='text-black text-center btn btn-sm btn-link no-underline capitalize'><BiLogOut className='text-lg mr-1' />Log Out</button>
+                        <button className='text-black text-center btn btn-sm btn-link no-underline capitalize'><IoMdSettings className='text-lg mr-1' />Settings</button>
+                    </ul>
+                </div>
+
             </div>
         </nav>
     );

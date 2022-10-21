@@ -10,7 +10,7 @@ import RequireAuth from './Components/Pages/Other-Components/RequireAuth';
 
 function App() {
   return (
-    <div>
+    <section>
 
       <Routes>
         <Route path='/' element={<RequireAuth><Chat /></RequireAuth>} />
@@ -22,7 +22,7 @@ function App() {
         <Route path='*' element={<ErrorPage />} />
       </Routes>
 
-    </div>
+    </section>
   );
 }
 
