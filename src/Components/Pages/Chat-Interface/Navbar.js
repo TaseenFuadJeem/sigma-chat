@@ -7,11 +7,11 @@ import auth from '../../../firebase.init';
 import logo from '../../Assets/logo-white.png';
 import { BiLogOut, BiDownArrow } from 'react-icons/bi';
 import { IoMdSettings } from 'react-icons/io';
+import userAvatar from '../../Assets/user-svgrepo-com.svg';
 
 const Navbar = () => {
 
     const [user] = useAuthState(auth);
-    console.log(user?.photoURL)
 
     const navigate = useNavigate();
 
@@ -59,17 +59,15 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
 
-
-
                 <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost m-1">
                         <div className='flex items-center'>
                             <div className="avatar online">
                                 <div className="w-9 rounded-full">
-                                    <img src={user?.photoURL} alt="dp" />
+                                    <img src={user?.photoURL ? user?.photoURL : userAvatar} alt="dp" />
                                 </div>
                             </div>
-                            <p className='ml-2 normal-case text-white font-semibold'>{user?.displayName}</p>
+                            <p className='ml-2 normal-case text-white font-semibold hidden lg:block'>{user?.displayName}</p>
                             <BiDownArrow className='text-lg ml-1' />
                         </div>
                     </label>

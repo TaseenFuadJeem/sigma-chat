@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
-import auth from '../../../firebase.init';
+import auth, { db } from '../../../firebase.init';
 import pattern from '../../Assets/login-pattern.png';
 import logo from '../../Assets/logo-black.png';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { FcGoogle } from 'react-icons/fc';
 import Swal from 'sweetalert2';
 import Loading from '../Other-Components/Loading';
 import AnimatedRoute from '../Other-Components/AnimatedRoute';
+import { doc, setDoc } from "firebase/firestore";
 
 const Registration = () => {
 
@@ -19,6 +20,8 @@ const Registration = () => {
     const [updateProfile, updating, updateError] = useUpdateProfile(auth);
 
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
+
+    const [everyUser] = useAuthState(auth);
 
     const navigate = useNavigate();
 
@@ -32,8 +35,6 @@ const Registration = () => {
                 showConfirmButton: false,
                 timer: 2000
             })
-            console.log(googleUser)
-            console.log(user)
             navigate('/conversations')
         }
 
@@ -58,6 +59,11 @@ const Registration = () => {
 
             await createUserWithEmailAndPassword(data.email, data.password);
             await updateProfile({ displayName: data.name });
+            await setDoc(doc(db, "users", user.uid || googleUser.uid), {
+                uid: user.uid || googleUser.uid,
+                username: data.name,
+                email: everyUser.email
+            })
             reset();
 
         } else {
@@ -118,7 +124,7 @@ const Registration = () => {
                                                     <label className="label">
                                                         <span className="label-text text-gray-500">Name</span>
                                                     </label>
-                                                    <input type="text" placeholder="your name" className="input input-bordered text-black" {...register("name", {
+                                                    <input type="text" placeholder="your name" className="input input-bordered input-accent text-black" {...register("name", {
                                                         required: {
                                                             value: true,
                                                             message: "Name is required"
@@ -133,7 +139,7 @@ const Registration = () => {
                                                     <label className="label">
                                                         <span className="label-text text-gray-500">Email</span>
                                                     </label>
-                                                    <input type="email" placeholder="email" className="input input-bordered text-black" {...register("email", {
+                                                    <input type="email" placeholder="email" className="input input-bordered input-accent text-black" {...register("email", {
                                                         required: {
                                                             value: true,
                                                             message: "Email is required"
@@ -153,7 +159,7 @@ const Registration = () => {
                                                     <label className="label">
                                                         <span className="label-text text-gray-500">Password</span>
                                                     </label>
-                                                    <input type="password" placeholder="password" className="input input-bordered text-black" {...register("password", {
+                                                    <input type="password" placeholder="password" className="input input-bordered input-accent text-black" {...register("password", {
                                                         required: {
                                                             value: true,
                                                             message: "Password is required"
@@ -173,7 +179,7 @@ const Registration = () => {
                                                     <label className="label">
                                                         <span className="label-text text-gray-500">Confirm Password</span>
                                                     </label>
-                                                    <input type="password" placeholder="Please re-write your password" className="input input-bordered text-black" {...register("confirmpassword", {
+                                                    <input type="password" placeholder="Please re-write your password" className="input input-bordered input-accent text-black" {...register("confirmpassword", {
                                                         required: {
                                                             value: true,
                                                             message: "Password confirmation is required"

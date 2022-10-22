@@ -127,7 +127,7 @@ const Login = () => {
                                                     <label className="label">
                                                         <span className="label-text text-gray-500">Email</span>
                                                     </label>
-                                                    <input type="email" placeholder="Enter your email" className="input input-bordered text-black" {...register("email", {
+                                                    <input type="email" placeholder="Enter your email" className="input input-bordered input-accent text-black" {...register("email", {
                                                         required: {
                                                             value: true,
                                                             message: "Email is required"
@@ -147,7 +147,7 @@ const Login = () => {
                                                     <label className="label">
                                                         <span className="label-text text-gray-500">Password</span>
                                                     </label>
-                                                    <input type="password" placeholder="Enter your password" className="input input-bordered text-black" {...register("password", {
+                                                    <input type="password" placeholder="Enter your password" className="input input-bordered input-accent text-black" {...register("password", {
                                                         required: {
                                                             value: true,
                                                             message: "Password is required"
