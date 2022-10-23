@@ -194,6 +194,14 @@ const Registration = () => {
                                                         {errors.confirmpassword?.type === 'minLength' && <span className="label-text-alt text-red-500">{errors.confirmpassword.message}</span>}
                                                     </label>
                                                 </div>
+                                                <div className="form-control">
+                                                    <label class="block mb-2 text-sm font-medium text-gray-500 dark:text-gray-300" for="default_size">Select your profile picture</label>
+                                                    <input type="file" id="default_size" className="block mb-5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" {...register("picture", {
+                                                        required: {
+                                                            value: false
+                                                        }
+                                                    })} />
+                                                </div>
                                             </div>
 
                                             <div class=" my-3">
